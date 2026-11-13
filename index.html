@@ -116,12 +116,12 @@ footer{text-align:center;color:#89a9bf;padding:20px;font-size:.85rem}
 
 
 <section class="panel" id="lab" hidden>
- <div class="kicker">File 03 • Interactive investigation</div><h2>🧪 The Investigation Labs</h2><div class="section-art"><svg viewBox="0 0 180 140" role="img" aria-label="Laboratory flask with blue liquid"><path d="M67 16h46M80 16v45L42 116q-5 10 8 10h80q13 0 8-10L100 61V16" fill="#dff5ff" stroke="#48c5ff" stroke-width="5" stroke-linejoin="round"/><path d="M58 100h64l15 19H43z" fill="#48c5ff"/><circle cx="77" cy="91" r="5" fill="#fff"/><circle cx="101" cy="108" r="4" fill="#fff"/><path d="M80 16v-6h20v6" fill="none" stroke="#dff5ff" stroke-width="4"/></svg><p><b>FOUR REQUIRED STATIONS</b><br>Answer every question correctly at each station to secure the evidence and unlock the next challenge.</p></div>
+ <div class="kicker">File 03 • Interactive investigation</div><h2>🧪 The Investigation Labs</h2><div class="section-art"><svg viewBox="0 0 180 140" role="img" aria-label="Laboratory flask with blue liquid"><path d="M67 16h46M80 16v45L42 116q-5 10 8 10h80q13 0 8-10L100 61V16" fill="#dff5ff" stroke="#48c5ff" stroke-width="5" stroke-linejoin="round"/><path d="M58 100h64l15 19H43z" fill="#48c5ff"/><circle cx="77" cy="91" r="5" fill="#fff"/><circle cx="101" cy="108" r="4" fill="#fff"/><path d="M80 16v-6h20v6" fill="none" stroke="#dff5ff" stroke-width="4"/></svg><p><b>FIVE REQUIRED STATIONS</b><br>Answer every question correctly at each station to secure the evidence and unlock the next challenge.</p></div>
  <p class="muted">The evidence locker gave you the facts. Now test your detective skills at four interactive stations. Complete each station to unlock the final clue challenge.</p>
- <div class="steps" id="labSteps"><span class="step">01 Body Composition Lab</span><span class="step">02 Glucose Relay</span><span class="step">03 Myth Buster</span><span class="step">04 Technology Check</span></div>
+ <div class="steps" id="labSteps"><span class="step">01 Body Composition Lab</span><span class="step">02 Glucose Relay</span><span class="step">03 Myth Buster</span><span class="step">04 Technology Check</span><span class="step">05 Physical Fitness</span></div>
  <div id="labStations"></div>
  <div class="progress"><span id="labProgress"></span></div>
- <p id="labStatus" class="muted" aria-live="polite">0 of 4 investigation stations completed.</p>
+ <p id="labStatus" class="muted" aria-live="polite">0 of 5 investigation stations completed.</p>
  <button class="btn primary" id="toClues" disabled>All stations complete — solve the clues →</button>
 </section>
 
@@ -191,6 +191,17 @@ const labData=[
  {id:"tech",title:"04 • Technology Check",intro:"Technology can support diabetes management, but it does not make diabetes disappear.",qs:[
   {q:"What does a continuous glucose monitor (CGM) help a person do?",a:["Track glucose patterns throughout the day","Automatically cure diabetes","Replace every medical decision"],c:0,why:"A CGM tracks glucose readings and trends. People still use the information to make management decisions."},
   {q:"A student with Type 1 diabetes is wearing a CGM. What is the best response?",a:["Assume you know how they feel","Respect their privacy and follow their lead if they choose to share","Tell them what they should eat"],c:1,why:"Respect privacy. Offer support without making assumptions or giving unsolicited medical advice."}
+ ]},
+ {id:"fitness",title:"05 • Physical Activity & Fitness",intro:"Review the difference between physical activity, exercise, and physical fitness, then identify the five components of fitness.",qs:[
+  {q:"What is physical activity?",a:["Only planned workouts at a gym","Any body movement produced by skeletal muscles that uses energy","Only sports and running"],c:1,why:"Physical activity includes everyday movement such as walking, climbing stairs, gardening, and dancing."},
+  {q:"Which example is physical activity even though it is not a formal workout?",a:["Gardening","Sitting and watching television","Sleeping"],c:0,why:"Gardening involves body movement produced by skeletal muscles and uses energy."},
+  {q:"What makes exercise different from general physical activity?",a:["Exercise is always competitive","Exercise is planned, structured, and repetitive with a fitness goal","Exercise only happens outdoors"],c:1,why:"Exercise is a specific type of physical activity that is planned, structured, and repetitive."},
+  {q:"Which statement best describes physical fitness?",a:["The ability to do daily tasks with vigor without undue fatigue and still have energy for recreation","The ability to lift the heaviest weight in a gym","A person's body weight or appearance"],c:0,why:"Physical fitness helps people complete daily tasks with energy left for recreational activities."},
+  {q:"Which component describes how efficiently the heart and lungs deliver oxygen during sustained activity?",a:["Flexibility","Cardiovascular endurance","Muscular strength"],c:1,why:"Cardiovascular endurance is the efficiency of the heart and lungs during sustained activity."},
+  {q:"Which component is the maximum force a muscle or muscle group can exert in a single effort?",a:["Muscular strength","Muscular endurance","Flexibility"],c:0,why:"Muscular strength is the maximum force produced in one effort."},
+  {q:"Which component is the ability of muscles to perform repeated contractions without fatigue?",a:["Body composition","Cardiovascular endurance","Muscular endurance"],c:2,why:"Muscular endurance is the ability to repeat muscle contractions over time without tiring."},
+  {q:"Which component refers to the range of motion available at a joint?",a:["Flexibility","Muscular strength","Body composition"],c:0,why:"Flexibility is the range of motion available at a joint."},
+  {q:"Which component describes the ratio of fat mass to lean muscle mass?",a:["Cardiovascular endurance","Body composition","Muscular endurance"],c:1,why:"Body composition describes what the body is made of, including fat mass and lean mass."}
  ]}
 ];
 const labRoot=document.getElementById("labStations");
@@ -214,9 +225,9 @@ labRoot.addEventListener("click",e=>{
    document.getElementById("stationStatus-"+si).className="feedback good";
    document.getElementById("stationStatus-"+si).textContent="✓ Station complete — evidence secured!";
    document.querySelectorAll("#labSteps .step")[si].classList.add("done");
-   document.getElementById("labProgress").style.width=(labDone.size/4*100)+"%";
-   document.getElementById("labStatus").textContent=labDone.size+" of 4 investigation stations completed.";
-   if(labDone.size===4){complete("lab");document.getElementById("toClues").disabled=false;document.getElementById("labStatus").textContent="All four stations complete! Your detective skills are ready for the final challenge."}
+   document.getElementById("labProgress").style.width=(labDone.size/5*100)+"%";
+   document.getElementById("labStatus").textContent=labDone.size+" of 5 investigation stations completed.";
+   if(labDone.size===5){complete("lab");document.getElementById("toClues").disabled=false;document.getElementById("labStatus").textContent="All five stations complete! Your detective skills are ready for the final challenge."}
   }
  }else{
   b.classList.add("incorrect");b.disabled=true;
