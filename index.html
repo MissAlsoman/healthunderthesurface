@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CASE FILE #013 | What's Under the Surface?</title>
+<style>
+:root{--bg:#071426;--panel:#10243d;--panel2:#152e4c;--line:#285174;--blue:#48c5ff;--ice:#dff5ff;--silver:#a9c1d2;--white:#f7fbff;--muted:#c2d5e3;--gold:#ffd36a;--green:#8ce0b0;--red:#ff9d9d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -15%,#17446a 0,#0a1c31 45%,var(--bg) 80%);color:var(--white);font:16px/1.6 system-ui,Segoe UI,sans-serif}
+header{padding:54px 20px 38px;text-align:center;border-bottom:1px solid #397ba5;background:linear-gradient(120deg,#0c2139dd,#122d4bdd),radial-gradient(circle at 50% 0,#1a6a9b,transparent 60%)}
+.stamp{display:inline-block;border:1px solid var(--blue);color:var(--blue);padding:5px 13px;border-radius:5px;letter-spacing:.2em;font-size:.75rem;font-weight:900;transform:rotate(-2deg)}
+h1{font-size:clamp(2.4rem,7vw,5rem);line-height:1.02;margin:18px auto 12px;max-width:900px;letter-spacing:-.04em}h1 span{color:var(--blue);text-shadow:0 0 22px #48c5ff55}
+header p{max-width:690px;margin:0 auto;color:var(--muted);font-size:1.08rem}
+.wrap{max-width:1080px;margin:auto;padding:20px}
+.topline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--silver);font-size:.85rem;margin:8px 0 14px}
+nav{position:sticky;top:0;z-index:5;background:#08182bed;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;justify-content:center;gap:7px;flex-wrap:wrap;padding:10px}
+nav button,.btn{border:1px solid #3c6688;background:#122943;color:var(--ice);border-radius:8px;padding:9px 14px;font:700 .9rem system-ui;cursor:pointer}
+nav button.active,nav button:hover,.btn.primary{background:var(--blue);border-color:var(--blue);color:#062039}
+main{max-width:1080px;margin:auto;padding:18px 20px 55px}
+.panel{background:linear-gradient(145deg,#10243d,#0d1e34);border:1px solid var(--line);border-radius:18px;padding:clamp(18px,3vw,30px);margin:18px 0;box-shadow:0 14px 35px #0003}
+.panel[hidden]{display:none}.kicker{color:var(--blue);font-size:.76rem;font-weight:900;letter-spacing:.17em;text-transform:uppercase}
+h2{font-size:clamp(1.6rem,4vw,2.25rem);margin:4px 0 10px;line-height:1.15}h3{margin:5px 0 8px}.muted{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:13px;margin:18px 0}
+.card{background:#f3f9ff;color:#10243a;border-radius:13px;padding:17px;border-top:4px solid var(--blue)}.card:nth-child(2){border-color:#9cbbd2}.card:nth-child(3){border-color:#75d6c4}.card p{margin:6px 0 0;color:#40566a}.emoji{font-size:1.7rem}
+.callout{padding:15px 17px;border-left:4px solid var(--gold);background:#1a3450;border-radius:8px;margin:16px 0}
+.steps{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}.step{background:#142e49;border:1px solid var(--line);border-radius:99px;padding:6px 11px;color:var(--muted);font-size:.82rem}.step.done{color:var(--green);border-color:var(--green)}
+.evidence{background:#0a1a2c;border:1px solid #345d7b;border-radius:12px;padding:17px;margin:12px 0}.evidence summary{cursor:pointer;font-weight:800;color:var(--ice)}.evidence p{color:var(--muted)}
+.question{background:#f5f9ff;color:#12263d;border-radius:12px;padding:17px;margin:14px 0}.question p{font-weight:800;margin:0 0 10px}.choices{display:grid;gap:8px}.choice{background:#e8f1f8;color:#16314b;border:2px solid transparent;border-radius:8px;padding:11px 13px;text-align:left;font:600 .95rem system-ui;cursor:pointer}.choice:hover{border-color:#69bce8}.choice.correct{background:#dff8e9;border-color:#46b77a}.choice.incorrect{background:#ffe7e7;border-color:#dc7777}.feedback{min-height:24px;margin:9px 0 0;font-weight:700}.good{color:var(--green)}.try{color:var(--red)}
+input,textarea{width:100%;padding:12px;border-radius:9px;border:1px solid #9bb8cc;background:#f7fbff;color:#10243d;font:inherit;margin:6px 0 12px}textarea{min-height:125px;resize:vertical}
+label{font-weight:750;color:var(--ice)}.btn{margin:5px 5px 5px 0}.btn.primary{font-weight:900}.btn:disabled{opacity:.5;cursor:not-allowed}
+.progress{height:9px;border-radius:99px;background:#263f58;overflow:hidden;margin:14px 0}.progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#48c5ff,#8ce0b0);transition:width .3s}
+.badge{display:inline-block;color:var(--blue);border:1px solid #36749b;padding:3px 9px;border-radius:5px;font-size:.75rem;font-weight:900;letter-spacing:.1em}
+.report{background:#f3f9ff;color:#12263d;border-radius:12px;padding:20px}.report h3{color:#16466a}.report p{color:#40566a}
+footer{text-align:center;color:#89a9bf;padding:20px;font-size:.85rem}
+@media(max-width:600px){nav{position:relative}nav button{flex:1 1 42%}.wrap{padding:12px}main{padding:10px 12px 35px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+ <div class="stamp">CONFIDENTIAL • HEALTH INVESTIGATION UNIT</div>
+ <h1>CASE FILE <span>#013</span><br>WHAT'S UNDER THE SURFACE?</h1>
+ <p>A health detective investigation into body composition, glucose, diabetes, and the many factors that shape health.</p>
+</header>
+<nav aria-label="Investigation sections">
+ <button class="active" data-go="briefing">Case Briefing</button><button data-go="profiles">Meet the People</button><button data-go="evidence">Evidence Locker</button><button data-go="lab">Investigation Labs</button><button data-go="clues">Solve the Clues</button><button data-go="report">Final Report</button>
+</nav>
+<div class="wrap"><div class="topline"><span>VPrepWV • HEALTH • WEEK 13</span><span id="progressText">Investigation progress: 0 / 4</span></div><div class="progress"><span id="progressBar"></span></div></div>
+<main>
+<section class="panel" id="briefing">
+ <div class="kicker">Your assignment begins here</div><h2>🕵️ Welcome, Detective.</h2>
+ <p class="muted">A mystery has landed on your desk. People sometimes make assumptions about health based on appearance, weight, or one piece of information. Your job is to examine the evidence and uncover what those clues can—and cannot—tell us.</p>
+ <div class="grid">
+  <article class="card"><div class="emoji">🧬</div><h3>Body Composition</h3><p>Investigate muscle, bone, water, and fat—and why body composition is only one part of health.</p></article>
+  <article class="card"><div class="emoji">⚡</div><h3>Glucose & Insulin</h3><p>Follow the body's energy story and learn how insulin helps glucose move into cells.</p></article>
+  <article class="card"><div class="emoji">💙</div><h3>Diabetes Awareness</h3><p>Separate facts from myths and understand that diabetes is not something you can diagnose by looking at someone.</p></article>
+ </div>
+ <div class="callout"><b>Detective rule:</b> People are not cases to judge. Use respectful language, rely on evidence, and remember that health is complex and personal.</div>
+ <h3>Your mission</h3><ol class="muted"><li>Meet the people in the case.</li><li>Open the evidence files and review the facts.</li><li>Answer the investigation questions to unlock your case report.</li><li>Complete the final report and submit your work as directed by your teacher.</li></ol>
+ <button class="btn primary" data-next="profiles">Open the case →</button>
+</section>
+
+<section class="panel" id="profiles" hidden>
+ <div class="kicker">File 01 • People in the case</div><h2>Meet the People</h2><p class="muted">Read each profile. These are fictional people created for this investigation. Do not diagnose anyone from these details.</p>
+ <div class="grid">
+  <article class="card"><div class="emoji">🏃</div><h3>Alex</h3><p>Enjoys biking and playing basketball. Has a busy schedule and sometimes stays up late. Alex's family has a history of Type 2 diabetes.</p></article>
+  <article class="card"><div class="emoji">🎨</div><h3>Jordan</h3><p>Enjoys drawing and gaming. Has Type 1 diabetes and uses a continuous glucose monitor and insulin to manage blood glucose.</p></article>
+  <article class="card"><div class="emoji">🎵</div><h3>Sam</h3><p>Enjoys music and walking with friends. Sam has a wide range of interests and routines, and no one in class knows Sam's medical history.</p></article>
+ </div>
+ <div class="callout"><b>Think like a detective:</b> A person's appearance, activity level, or family history does not tell you their full health story. You need reliable information—and some information is private.</div>
+ <button class="btn primary" data-next="evidence">Continue to the evidence →</button>
+</section>
+
+<section class="panel" id="evidence" hidden>
+ <div class="kicker">File 02 • Evidence locker</div><h2>🔐 Open the Evidence Files</h2><p class="muted">Select each file to review the information. You will need these facts to solve the case.</p>
+ <details class="evidence"><summary>Evidence A — What is body composition?</summary><p>Body composition describes the different tissues and materials that make up the body. Four commonly discussed components are <b>muscle mass, bone mass, body water, and fat mass</b>. Each has important roles in normal body function.</p></details>
+ <details class="evidence"><summary>Evidence B — Beyond the number</summary><p>Weight and BMI do not describe every part of a person's health. They do not directly measure fitness, nutrition, sleep, mental well-being, blood glucose, or all aspects of body composition. No single number tells the whole story.</p></details>
+ <details class="evidence"><summary>Evidence C — What influences health?</summary><p>Health is shaped by many interacting factors, including genetics, nutrition, physical activity, sleep, stress, environment, access to resources, and medical conditions. These factors are not all fully under an individual's control.</p></details>
+ <details class="evidence"><summary>Evidence D — Glucose takes a journey</summary><p>When we eat foods containing carbohydrates, the body breaks them down into glucose. Glucose enters the bloodstream. The pancreas produces insulin, a hormone that helps glucose move from the blood into many body cells, where it can be used for energy or stored.</p></details>
+ <details class="evidence"><summary>Evidence E — Type 1 and Type 2 diabetes</summary><p><b>Type 1:</b> An autoimmune condition in which the immune system attacks insulin-producing beta cells in the pancreas. People with Type 1 diabetes need insulin. It is not caused by eating sugar or by body size.</p><p><b>Type 2:</b> A condition involving insulin resistance and/or the body not making enough insulin to meet its needs. Risk is influenced by multiple factors, including genetics, environment, and other health factors. It can affect people of different ages and body sizes.</p></details>
+ <details class="evidence"><summary>Evidence F — Body composition and glucose</summary><p>Muscles use glucose for energy. Physical activity and muscle contractions can help muscles take up glucose and can improve insulin sensitivity. Higher amounts of visceral fat are associated with greater insulin resistance, but body fat or body size alone cannot diagnose diabetes or determine someone's health.</p></details>
+ <details class="evidence"><summary>Evidence G — Living with diabetes</summary><p>Diabetes management is individual. It may involve checking glucose, insulin or other treatments, food choices, physical activity, and ongoing adjustments. Technology such as continuous glucose monitors and insulin pumps can support management. People with diabetes can live active, full lives.</p></details>
+ <div class="callout"><b>Important:</b> This activity is for education—not diagnosis. Never guess whether someone has diabetes based on appearance or make assumptions about how they manage their health.</div>
+ <button class="btn primary" data-next="lab">Evidence reviewed — enter the investigation labs →</button>
+</section>
+
+
+<section class="panel" id="lab" hidden>
+ <div class="kicker">File 03 • Interactive investigation</div><h2>🧪 The Investigation Labs</h2>
+ <p class="muted">The evidence locker gave you the facts. Now test your detective skills at four interactive stations. Complete each station to unlock the final clue challenge.</p>
+ <div class="steps" id="labSteps"><span class="step">01 Body Composition Lab</span><span class="step">02 Glucose Relay</span><span class="step">03 Myth Buster</span><span class="step">04 Technology Check</span></div>
+ <div id="labStations"></div>
+ <div class="progress"><span id="labProgress"></span></div>
+ <p id="labStatus" class="muted" aria-live="polite">0 of 4 investigation stations completed.</p>
+ <button class="btn primary" id="toClues" disabled>All stations complete — solve the clues →</button>
+</section>
+
+<section class="panel" id="clues" hidden>
+ <div class="kicker">File 03 • Investigation challenge</div><h2>🧩 Solve the Clues</h2><p class="muted">You have completed the four investigation labs. Now answer all six case questions. You can retry any question and use the evidence locker when you need a reminder.</p>
+ <div id="quiz"></div>
+ <div class="progress"><span id="quizProgress"></span></div>
+ <p id="quizScore" class="muted" aria-live="polite">0 of 6 clues solved.</p>
+ <button class="btn primary" id="unlockReport" disabled>Unlock the Final Report →</button>
+</section>
+
+<section class="panel" id="report" hidden>
+ <div class="kicker">File 04 • Case conclusion</div><h2>📋 Final Case Report</h2>
+ <p class="muted">Use what you learned to explain what the evidence tells you. Write in your own words. Do not include personal medical information.</p>
+ <div class="report">
+  <h3>CASE FILE #013 — What's Under the Surface?</h3>
+  <p><b>Detective conclusion:</b> Health is more than appearance or a number. Evidence must be considered in context.</p>
+  <label for="answer1">1. Name two components of body composition and explain why weight alone does not tell the whole health story.</label>
+  <textarea id="answer1" placeholder="Type your response..."></textarea>
+  <label for="answer2">2. Explain how insulin helps glucose move from the bloodstream into body cells.</label>
+  <textarea id="answer2" placeholder="Type your response..."></textarea>
+  <label for="answer3">3. Identify one important difference between Type 1 and Type 2 diabetes.</label>
+  <textarea id="answer3" placeholder="Type your response..."></textarea>
+  <label for="answer4">4. What is one myth or assumption about diabetes that the evidence helped you correct?</label>
+  <textarea id="answer4" placeholder="Type your response..."></textarea>
+  <label for="answer5">5. Why is it important not to judge someone's health based on their appearance?</label>
+  <textarea id="answer5" placeholder="Type your response..."></textarea>
+ </div>
+ <div class="callout"><b>Before you submit:</b> Review your responses, then select “Prepare My Case Report.” You can print or save the report as a PDF, or take a screenshot and submit it in Canvas according to your teacher's directions.</div>
+ <button class="btn primary" id="prepare">Prepare My Case Report</button><button class="btn" id="print">Print / Save as PDF</button>
+ <div id="completion" class="report" hidden><h2>🔎 CASE CLOSED!</h2><p>You completed CASE FILE #013. Your investigation is ready to submit.</p><p><b>Remember:</b> Be curious. Be informed. Be kind.</p><div id="summary"></div></div>
+</section>
+</main>
+<footer>VPrepWV • Health Week 13 • CASE FILE #013<br>Educational activity only. Not medical advice or a diagnostic tool.</footer>
+<script>
+const sections=["briefing","profiles","evidence","lab","clues","report"];let visited=new Set(["briefing"]);let solved=new Set();let labDone=new Set();
+function show(id){sections.forEach(s=>document.getElementById(s).hidden=s!==id);document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.go===id));visited.add(id);updateProgress();window.scrollTo({top:0,behavior:"smooth"})}
+function updateProgress(){let n=visited.size;document.getElementById("progressText").textContent="Investigation progress: "+n+" / 5";document.getElementById("progressBar").style.width=(n/5*100)+"%"}
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.go==="report"&&document.getElementById("unlockReport").disabled)return show("clues");if(b.dataset.go==="clues"&&labDone.size!==4)return show("lab");show(b.dataset.go)}));
+document.querySelectorAll("[data-next]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.next)));
+
+const labData=[
+ {id:"body",title:"01 • Body Composition Lab",intro:"Match each body component to an accurate description.",qs:[
+  {q:"Which body component helps you move, supports posture, and uses glucose for energy?",a:["Muscle mass","Bone mass","Body water"],c:0,why:"Muscles help produce movement and use glucose for energy."},
+  {q:"Which statement about body fat is accurate?",a:["All body fat is harmful","Fat tissue has roles including energy storage and protection","Body fat alone diagnoses diabetes"],c:1,why:"Fat tissue has important functions. Amount and distribution can relate to health, but appearance alone cannot diagnose a condition."}
+ ]},
+ {id:"glucose",title:"02 • Glucose Relay",intro:"Follow the path from food to the cells.",qs:[
+  {q:"After carbohydrates are digested, what enters the bloodstream?",a:["Glucose","Insulin","Oxygen"],c:0,why:"Carbohydrates are broken down into glucose, which enters the bloodstream."},
+  {q:"Which organ produces insulin?",a:["The heart","The pancreas","The lungs"],c:1,why:"The pancreas produces insulin, which helps glucose move into many body cells."}
+ ]},
+ {id:"myths",title:"03 • Diabetes Myth Buster",intro:"Separate reliable information from common misconceptions.",qs:[
+  {q:"True or false: Type 1 diabetes is caused by eating too much sugar.",a:["True","False"],c:1,why:"Type 1 diabetes is an autoimmune condition, not caused by eating sugar."},
+  {q:"Which statement about Type 2 diabetes is most accurate?",a:["It only affects adults","It is caused by one personal choice","It has multiple contributing factors and can affect people of different ages"],c:2,why:"Type 2 diabetes is influenced by multiple factors and can affect people of different ages."}
+ ]},
+ {id:"tech",title:"04 • Technology Check",intro:"Technology can support diabetes management, but it does not make diabetes disappear.",qs:[
+  {q:"What does a continuous glucose monitor (CGM) help a person do?",a:["Track glucose patterns throughout the day","Automatically cure diabetes","Replace every medical decision"],c:0,why:"A CGM tracks glucose readings and trends. People still use the information to make management decisions."},
+  {q:"A student with Type 1 diabetes is wearing a CGM. What is the best response?",a:["Assume you know how they feel","Respect their privacy and follow their lead if they choose to share","Tell them what they should eat"],c:1,why:"Respect privacy. Offer support without making assumptions or giving unsolicited medical advice."}
+ ]}
+];
+const labRoot=document.getElementById("labStations");
+labData.forEach((station,si)=>{
+ const card=document.createElement("article");card.className="evidence";card.id="station-"+station.id;
+ card.innerHTML='<h3>'+station.title+'</h3><p class="muted">'+station.intro+'</p>'+station.qs.map((q,qi)=>'<div class="question"><p>'+(qi+1)+'. '+q.q+'</p><div class="choices">'+q.a.map((a,ai)=>'<button class="choice" data-station="'+si+'" data-question="'+qi+'" data-answer="'+ai+'">'+String.fromCharCode(65+ai)+'. '+a+'</button>').join("")+'</div><div class="feedback" id="labfb-'+si+'-'+qi+'"></div></div>').join("")+'<p class="feedback" id="stationStatus-'+si+'">Station not yet complete.</p>';
+ labRoot.appendChild(card);
+});
+labRoot.addEventListener("click",e=>{
+ const b=e.target.closest(".choice");if(!b)return;
+ const si=+b.dataset.station,qi=+b.dataset.question,ai=+b.dataset.answer,st=labData[si],q=st.qs[qi];
+ if(labDone.has(st.id)||b.disabled)return;
+ const feedback=document.getElementById("labfb-"+si+"-"+qi);
+ if(ai===q.c){
+  b.classList.add("correct");b.disabled=true;
+  feedback.className="feedback good";feedback.textContent="✓ Correct! "+q.why;
+  const stationButtons=labRoot.querySelectorAll('[data-station="'+si+'"]');
+  const answered=[...stationButtons].filter(x=>x.disabled&&x.classList.contains("correct")).length;
+  if(answered===st.qs.length){
+   labDone.add(st.id);
+   document.getElementById("stationStatus-"+si).className="feedback good";
+   document.getElementById("stationStatus-"+si).textContent="✓ Station complete — evidence secured!";
+   document.querySelectorAll("#labSteps .step")[si].classList.add("done");
+   document.getElementById("labProgress").style.width=(labDone.size/4*100)+"%";
+   document.getElementById("labStatus").textContent=labDone.size+" of 4 investigation stations completed.";
+   if(labDone.size===4){document.getElementById("toClues").disabled=false;document.getElementById("labStatus").textContent="All four stations complete! Your detective skills are ready for the final challenge."}
+  }
+ }else{
+  b.classList.add("incorrect");b.disabled=true;
+  feedback.className="feedback try";feedback.textContent="Not quite. Review the evidence locker and try another option.";
+ }
+});
+document.getElementById("toClues").addEventListener("click",()=>show("clues"));
+
+const questions=[
+{q:"Which list correctly names four components of body composition?",a:["Muscle, bone, body water, and fat","Height, age, eye color, and weight","Calories, steps, sleep, and mood"],c:0,why:"Body composition includes muscle mass, bone mass, body water, and fat mass."},
+{q:"Why doesn't a person's weight or BMI tell the whole health story?",a:["They measure every aspect of health","They do not directly show all body tissues, fitness, habits, or medical factors","They tell whether someone has diabetes"],c:1,why:"No single number captures every part of health or can diagnose diabetes."},
+{q:"What is insulin's main role in the glucose journey?",a:["It helps glucose move from the bloodstream into many body cells","It turns water into glucose","It is made by muscles"],c:0,why:"Insulin is a hormone made by the pancreas that helps many cells take up glucose."},
+{q:"What causes Type 1 diabetes?",a:["Eating too much sugar","An autoimmune attack on insulin-producing cells in the pancreas","Not getting enough exercise"],c:1,why:"Type 1 diabetes is autoimmune. It is not caused by eating sugar, inactivity, or body size."},
+{q:"Which statement about Type 2 diabetes is most accurate?",a:["It only affects adults","It is always caused by personal choices","It involves insulin resistance and/or not enough insulin, with multiple contributing factors"],c:2,why:"Type 2 diabetes has multiple influences and can affect people of different ages and body sizes."},
+{q:"Which is the most respectful and evidence-based conclusion?",a:["You can tell if someone has diabetes by looking at them","Body size alone tells you someone's health","You cannot determine someone's health or diabetes status just by appearance"],c:2,why:"Health is complex, and a person's medical information is not visible from appearance."}
+];
+const quiz=document.getElementById("quiz");
+questions.forEach((q,i)=>{let d=document.createElement("div");d.className="question";d.innerHTML='<p>'+(i+1)+'. '+q.q+'</p><div class="choices">'+q.a.map((a,j)=>'<button class="choice" data-q="'+i+'" data-a="'+j+'">'+String.fromCharCode(65+j)+'. '+a+'</button>').join("")+'</div><div class="feedback" id="fb'+i+'" aria-live="polite"></div>';quiz.appendChild(d)});
+quiz.addEventListener("click",e=>{let b=e.target.closest(".choice");if(!b)return;let i=+b.dataset.q;if(solved.has(i))return;let q=questions[i],f=document.getElementById("fb"+i);if(+b.dataset.a===q.c){b.classList.add("correct");b.disabled=true;solved.add(i);f.className="feedback good";f.textContent="✓ Correct! "+q.why}else{b.classList.add("incorrect");b.disabled=true;f.className="feedback try";f.textContent="Not quite. Review the evidence and try another answer."}let count=solved.size;document.getElementById("quizProgress").style.width=(count/questions.length*100)+"%";document.getElementById("quizScore").textContent=count+" of 6 clues solved.";if(count===questions.length){document.getElementById("unlockReport").disabled=false;document.getElementById("quizScore").textContent="All six clues solved! Your final report is unlocked."}});
+document.getElementById("unlockReport").addEventListener("click",()=>show("report"));
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.go==="lab"&&visited.has("evidence"))return show("lab");if(b.dataset.go==="clues"&&labDone.size!==4)return show("lab");if(b.dataset.go==="report"&&solved.size!==questions.length)return show("clues");show(b.dataset.go)}));
+document.getElementById("prepare").addEventListener("click",()=>{const ids=["answer1","answer2","answer3","answer4","answer5"];let missing=ids.filter(id=>!document.getElementById(id).value.trim());if(missing.length){alert("Please complete all five case report responses before preparing your report.");document.getElementById(missing[0]).focus();return}const labels=["Body composition and health","The role of insulin","Type 1 and Type 2 diabetes","A myth corrected","Respect and empathy"];document.getElementById("summary").innerHTML=ids.map((id,i)=>'<p><b>'+labels[i]+':</b><br>'+escapeHTML(document.getElementById(id).value).replace(/\n/g,"<br>")+'</p>').join("");document.getElementById("completion").hidden=false;document.getElementById("completion").scrollIntoView({behavior:"smooth",block:"start"})});
+function escapeHTML(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+document.getElementById("print").addEventListener("click",()=>window.print());
+</script>
+<style>
+@media print{body{background:#fff;color:#111}header,nav,.topline,.progress,.btn,footer{display:none!important}main{padding:0}.panel{display:block!important;background:#fff;color:#111;border:0;box-shadow:none;page-break-inside:avoid}.panel[hidden]{display:none!important}.muted,.evidence p{color:#333}.report{background:#fff;color:#111}.report p{color:#222}textarea{min-height:65px;border:1px solid #777}.callout{background:#eee;color:#111}}
+</style>
+</body></html>
