@@ -96,8 +96,22 @@ footer{text-align:center;color:#89a9bf;padding:20px;font-size:.85rem}
  <details class="evidence"><summary>Evidence E — Type 1 and Type 2 diabetes</summary><p><b>Type 1:</b> An autoimmune condition in which the immune system attacks insulin-producing beta cells in the pancreas. People with Type 1 diabetes need insulin. It is not caused by eating sugar or by body size.</p><p><b>Type 2:</b> A condition involving insulin resistance and/or the body not making enough insulin to meet its needs. Risk is influenced by multiple factors, including genetics, environment, and other health factors. It can affect people of different ages and body sizes.</p></details>
  <details class="evidence"><summary>Evidence F — Body composition and glucose</summary><p>Muscles use glucose for energy. Physical activity and muscle contractions can help muscles take up glucose and can improve insulin sensitivity. Higher amounts of visceral fat are associated with greater insulin resistance, but body fat or body size alone cannot diagnose diabetes or determine someone's health.</p></details>
  <details class="evidence"><summary>Evidence G — Living with diabetes</summary><p>Diabetes management is individual. It may involve checking glucose, insulin or other treatments, food choices, physical activity, and ongoing adjustments. Technology such as continuous glucose monitors and insulin pumps can support management. People with diabetes can live active, full lives.</p></details>
+ <details class="evidence"><summary>Evidence H — Physical activity, exercise, and physical fitness</summary>
+ <p><b>1. Physical Activity:</b> Any body movement produced by skeletal muscles that uses energy. This includes everyday activities like walking, climbing stairs, gardening, and dancing—not just formal workouts.</p>
+ <p><b>2. Exercise:</b> A specific type of physical activity that is planned, structured, and repetitive, done with the deliberate goal of improving or maintaining physical fitness.</p>
+ <p><b>3. Physical Fitness:</b> The ability to carry out daily tasks with vigor, without undue fatigue, while having enough energy left for recreational activities. Fitness has multiple components.</p>
+ <h3>Components of Physical Fitness</h3><p><b>What does being fit actually include?</b></p>
+ <ul>
+  <li><b>Cardiovascular Endurance:</b> How efficiently the heart and lungs deliver oxygen during sustained activity.</li>
+  <li><b>Muscular Strength:</b> The maximum force a muscle or muscle group can exert in a single effort.</li>
+  <li><b>Muscular Endurance:</b> The ability of muscles to perform repeated contractions without fatigue.</li>
+  <li><b>Flexibility:</b> The range of motion available at a joint; it can be reduced by inactivity.</li>
+  <li><b>Body Composition:</b> The ratio of fat mass to lean muscle mass—one measure of what the body is made of.</li>
+ </ul>
+ <p>Remember: physical activity includes everyday movement, while exercise is the planned and structured kind of activity. Both can contribute to physical fitness.</p>
+ </details>
  <div class="callout"><b>Important:</b> This activity is for education—not diagnosis. Never guess whether someone has diabetes based on appearance or make assumptions about how they manage their health.</div>
- <div id="evidenceGate" class="gate-note" aria-live="polite">0 of 7 evidence files reviewed. Open each file to unlock the next section.</div><button class="btn primary" id="evidenceContinue" disabled>Review all evidence to continue →</button>
+ <div id="evidenceGate" class="gate-note" aria-live="polite">0 of 8 evidence files reviewed. Open each file to unlock the next section.</div><button class="btn primary" id="evidenceContinue" disabled>Review all evidence to continue →</button>
 </section>
 
 
@@ -157,8 +171,8 @@ function updateProgress(){const n=completed.size;document.getElementById("progre
 document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.go)));
 document.getElementById("briefingContinue").addEventListener("click",()=>{complete("briefing");show("profiles")});
 document.getElementById("profilesContinue").addEventListener("click",()=>{profileConfirmed=true;document.getElementById("profileGate").textContent="✓ All three profiles reviewed. Evidence Locker unlocked.";document.getElementById("profileGate").classList.add("complete");complete("profiles");show("evidence")});
-document.querySelectorAll("#evidence details").forEach((d,i)=>d.addEventListener("toggle",()=>{if(d.open){evidenceRead.add(i);document.getElementById("evidenceGate").textContent=evidenceRead.size+" of 7 evidence files reviewed.";if(evidenceRead.size===7){document.getElementById("evidenceGate").textContent="✓ All seven evidence files reviewed. Investigation Labs unlocked.";document.getElementById("evidenceGate").classList.add("complete");document.getElementById("evidenceContinue").disabled=false;}}}));
-document.getElementById("evidenceContinue").addEventListener("click",()=>{if(evidenceRead.size===7){complete("evidence");show("lab")}});
+document.querySelectorAll("#evidence details").forEach((d,i)=>d.addEventListener("toggle",()=>{if(d.open){evidenceRead.add(i);document.getElementById("evidenceGate").textContent=evidenceRead.size+" of 7 evidence files reviewed.";if(evidenceRead.size===8){document.getElementById("evidenceGate").textContent="✓ All eight evidence files reviewed. Investigation Labs unlocked.";document.getElementById("evidenceGate").classList.add("complete");document.getElementById("evidenceContinue").disabled=false;}}}));
+document.getElementById("evidenceContinue").addEventListener("click",()=>{if(evidenceRead.size===8){complete("evidence");show("lab")}});
 updateNavigation();updateProgress();
 
 const labData=[
