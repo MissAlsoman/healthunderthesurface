@@ -42,6 +42,19 @@ footer{text-align:center;color:#89a9bf;padding:20px;font-size:.85rem}
 .section-art svg{width:150px;min-width:120px;height:120px}.section-art p{margin:0;color:var(--muted)}
 .locked{opacity:.45;cursor:not-allowed!important;filter:saturate(.5)}nav button:disabled{opacity:.4;cursor:not-allowed}
 .gate-note{padding:12px 15px;background:#172f49;border:1px solid #3d6585;border-radius:9px;color:var(--ice);margin:14px 0}
+.fitness-arcade{margin-top:24px;padding-top:20px;border-top:2px dashed #397ba5}
+.fitness-game{background:linear-gradient(145deg,#102b47,#173b5a);border:1px solid #397ba5;border-radius:14px;padding:17px;margin:15px 0}
+.fitness-game>p{color:var(--muted)}
+.mini-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;background:#f3f9ff;color:#17314a;border-radius:10px;padding:12px;margin:9px 0}
+.mini-row p{margin:0;font-weight:700}
+.mini-actions{display:flex;gap:6px;flex-wrap:wrap}
+.mini-btn{border:2px solid #7ca8c3;background:#e5f3fb;color:#17314a;border-radius:8px;padding:8px 10px;font-weight:800;cursor:pointer}
+.mini-btn:hover{border-color:#168ac4}.mini-btn:disabled{opacity:.6;cursor:default}
+.mini-btn.correct{background:#dff8e9;border-color:#46b77a}.mini-btn.wrong{background:#ffe7e7;border-color:#dc7777}
+.timer-display{font-size:2.5rem;font-weight:950;text-align:center;color:var(--gold);font-variant-numeric:tabular-nums;margin:8px}
+.fitness-award{text-align:center;padding:22px;border:2px solid var(--gold);border-radius:15px;background:linear-gradient(145deg,#173b5a,#254c65);margin-top:18px}
+@media(max-width:600px){.mini-row{grid-template-columns:1fr}.mini-actions{width:100%}.mini-btn{flex:1}}
+
 .gate-note.complete{border-color:var(--green);color:var(--green)}
 @media(max-width:560px){.section-art{display:block;text-align:center}.section-art svg{margin:auto}.visual-card svg{height:110px}}
 </style>
@@ -209,6 +222,17 @@ labData.forEach((station,si)=>{
  const card=document.createElement("article");card.className="evidence";card.id="station-"+station.id;
  card.innerHTML='<h3>'+station.title+'</h3><p class="muted">'+station.intro+'</p>'+station.qs.map((q,qi)=>'<div class="question"><p>'+(qi+1)+'. '+q.q+'</p><div class="choices">'+q.a.map((a,ai)=>'<button class="choice" data-station="'+si+'" data-question="'+qi+'" data-answer="'+ai+'">'+String.fromCharCode(65+ai)+'. '+a+'</button>').join("")+'</div><div class="feedback" id="labfb-'+si+'-'+qi+'"></div></div>').join("")+'<p class="feedback" id="stationStatus-'+si+'">Station not yet complete.</p>';
  labRoot.appendChild(card);
+ if(station.id==="fitness"){
+  card.insertAdjacentHTML("beforeend", `
+   <div class="fitness-arcade">
+    <div class="kicker">BONUS LEVEL • FITNESS ARCADE</div><h3>🏆 Train Your Fitness Superhero</h3>
+    <p class="muted">Complete all three mini-games to earn your Fitness Detective badge!</p>
+    <div class="fitness-game"><span class="badge">GAME 1</span><h3>⚡ Activity or Exercise?</h3><p>Choose the best category for each example.</p><div id="sortGame"></div><p class="feedback" id="sortStatus">0 of 6 sorted correctly.</p></div>
+    <div class="fitness-game"><span class="badge">GAME 2</span><h3>🦸 Build a Balanced Fitness Hero</h3><p>Choose the activity that best trains each fitness component.</p><div id="heroGame"></div><p class="feedback" id="heroStatus">0 of 5 fitness powers selected.</p></div>
+    <div class="fitness-game"><span class="badge">GAME 3</span><h3>⏱️ Beat the Clock!</h3><p>Answer five quick questions before the 60-second timer runs out.</p><div class="timer-display" id="fitnessTimer">60</div><button class="btn primary" id="startFitnessTimer">Start the 60-second challenge</button><div id="speedGame"></div><p class="feedback" id="speedStatus">Ready when you are!</p></div>
+    <div class="fitness-award" id="fitnessAward" hidden><div style="font-size:3rem">🏅</div><h3>FITNESS DETECTIVE BADGE UNLOCKED!</h3><p>You can identify physical activity, exercise, and all five components of physical fitness. Case skills upgraded!</p></div>
+   </div>`);
+ }
 });
 labRoot.addEventListener("click",e=>{
  const b=e.target.closest(".choice");if(!b)return;
@@ -235,6 +259,28 @@ labRoot.addEventListener("click",e=>{
  }
 });
 document.getElementById("toClues").addEventListener("click",()=>show("clues"));
+const fitnessSort=[
+ {t:"Walking from your car into school",c:0},{t:"A planned 30-minute jogging workout",c:1},{t:"Gardening and carrying soil",c:0},{t:"A scheduled strength-training session",c:1},{t:"Dancing at a family celebration",c:0},{t:"A planned dance-fitness class",c:1}
+];
+const sortRoot=document.getElementById("sortGame");let sortDone=new Set();
+fitnessSort.forEach((q,i)=>sortRoot.insertAdjacentHTML("beforeend",'<div class="mini-row" id="sort-'+i+'"><p>'+(i+1)+'. '+q.t+'</p><div class="mini-actions"><button class="mini-btn" data-sort="'+i+'" data-val="0">Physical Activity</button><button class="mini-btn" data-sort="'+i+'" data-val="1">Exercise</button></div></div>'));
+sortRoot.addEventListener("click",e=>{const b=e.target.closest("[data-sort]");if(!b||sortDone.has(+b.dataset.sort))return;const i=+b.dataset.sort,row=document.getElementById("sort-"+i);if(+b.dataset.val===fitnessSort[i].c){sortDone.add(i);row.querySelectorAll("button").forEach(x=>{x.disabled=true;if(+x.dataset.val===fitnessSort[i].c)x.classList.add("correct")});document.getElementById("sortStatus").textContent=sortDone.size+" of 6 sorted correctly.";if(sortDone.size===6)finishFitnessGame("sort")}else{b.classList.add("wrong");b.disabled=true}});
+const heroQs=[
+ {t:"Cardiovascular Endurance",a:["A steady bike ride","One maximum-effort lift","A seated toe touch"],c:0},{t:"Muscular Strength",a:["A long walk","One heavy lift with good form","A gentle stretch"],c:1},{t:"Muscular Endurance",a:["Repeated bodyweight squats","A single heavy lift","A flexibility stretch"],c:0},{t:"Flexibility",a:["A sprint","A plank hold","A gentle yoga stretch"],c:2},{t:"Body Composition",a:["The proportion of fat mass and lean mass","How fast the heart beats","How far a joint bends"],c:0}
+];
+const heroRoot=document.getElementById("heroGame");let heroDone=new Set();
+heroQs.forEach((q,i)=>heroRoot.insertAdjacentHTML("beforeend",'<div class="mini-row" id="hero-'+i+'"><p>'+(i+1)+'. '+q.t+'</p><div class="mini-actions">'+q.a.map((a,j)=>'<button class="mini-btn" data-hero="'+i+'" data-val="'+j+'">'+a+'</button>').join("")+'</div></div>'));
+heroRoot.addEventListener("click",e=>{const b=e.target.closest("[data-hero]");if(!b||heroDone.has(+b.dataset.hero))return;const i=+b.dataset.hero,row=document.getElementById("hero-"+i);if(+b.dataset.val===heroQs[i].c){heroDone.add(i);row.querySelectorAll("button").forEach(x=>{x.disabled=true;if(+x.dataset.val===heroQs[i].c)x.classList.add("correct")});document.getElementById("heroStatus").textContent=heroDone.size+" of 5 fitness powers selected.";if(heroDone.size===5)finishFitnessGame("hero")}else{b.classList.add("wrong");b.disabled=true}});
+const speedQs=[
+ {q:"Which is physical activity?",a:["Walking the dog","Only a gym workout"],c:0},{q:"Exercise is usually…",a:["Unplanned movement","Planned, structured, and repetitive"],c:1},{q:"Heart and lungs delivering oxygen during sustained activity describes…",a:["Cardiovascular endurance","Flexibility"],c:0},{q:"Repeated muscle contractions without fatigue describe…",a:["Muscular strength","Muscular endurance"],c:1},{q:"Range of motion at a joint is…",a:["Body composition","Flexibility"],c:1}
+];
+let speedIndex=0,speedTime=60,speedInterval=null,speedActive=false;
+function renderSpeed(){const root=document.getElementById("speedGame");if(speedIndex>=speedQs.length){root.innerHTML='<p class="good"><b>✓ All five speed questions correct!</b></p>';document.getElementById("speedStatus").textContent="Challenge complete!";finishFitnessGame("speed");return}const q=speedQs[speedIndex];root.innerHTML='<div class="question"><p>'+(speedIndex+1)+'. '+q.q+'</p><div class="choices">'+q.a.map((a,j)=>'<button class="choice" data-speed="'+j+'">'+String.fromCharCode(65+j)+'. '+a+'</button>').join("")+'</div></div>'}
+document.getElementById("startFitnessTimer").addEventListener("click",()=>{if(speedActive)return;speedActive=true;speedIndex=0;speedTime=60;document.getElementById("fitnessTimer").textContent=speedTime;document.getElementById("startFitnessTimer").disabled=true;document.getElementById("speedStatus").textContent="Go, detective!";renderSpeed();speedInterval=setInterval(()=>{speedTime--;document.getElementById("fitnessTimer").textContent=speedTime;if(speedTime<=0){clearInterval(speedInterval);speedActive=false;document.getElementById("startFitnessTimer").disabled=false;document.getElementById("speedStatus").textContent="Time's up! Try again to beat the clock.";document.getElementById("speedGame").innerHTML="";speedIndex=0}},1000)});
+document.getElementById("speedGame").addEventListener("click",e=>{const b=e.target.closest("[data-speed]");if(!b||!speedActive)return;const q=speedQs[speedIndex];if(+b.dataset.speed===q.c){speedIndex++;renderSpeed()}else{b.classList.add("incorrect");document.getElementById("speedStatus").textContent="Not quite—try the other answer!"}});
+const fitnessGameDone=new Set();
+function finishFitnessGame(id){fitnessGameDone.add(id);if(fitnessGameDone.size===3){document.getElementById("fitnessAward").hidden=false;document.getElementById("fitnessAward").scrollIntoView({behavior:"smooth",block:"center"});document.getElementById("labStatus").textContent="Five stations and all fitness arcade games completed!";}}
+
 
 const questions=[
 {q:"Which list correctly names four components of body composition?",a:["Muscle, bone, body water, and fat","Height, age, eye color, and weight","Calories, steps, sleep, and mood"],c:0,why:"Body composition includes muscle mass, bone mass, body water, and fat mass."},
