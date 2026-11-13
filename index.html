@@ -33,6 +33,17 @@ label{font-weight:750;color:var(--ice)}.btn{margin:5px 5px 5px 0}.btn.primary{fo
 footer{text-align:center;color:#89a9bf;padding:20px;font-size:.85rem}
 @media(max-width:600px){nav{position:relative}nav button{flex:1 1 42%}.wrap{padding:12px}main{padding:10px 12px 35px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+.visual-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:18px 0}
+.visual-card{background:linear-gradient(145deg,#f2f9ff,#dceefa);color:#17314a;border:1px solid #9dc7df;border-radius:14px;padding:13px;text-align:center;box-shadow:0 8px 20px #0002}
+.visual-card svg{width:100%;height:130px;display:block;margin:0 auto 8px}
+.visual-card h3{color:#16466a;margin:4px 0}.visual-card p{color:#40566a;font-size:.9rem;margin:0}
+.section-art{display:flex;align-items:center;gap:18px;background:linear-gradient(110deg,#102f4c,#173e5d);border:1px solid #397ba5;border-radius:14px;padding:15px;margin:16px 0}
+.section-art svg{width:150px;min-width:120px;height:120px}.section-art p{margin:0;color:var(--muted)}
+.locked{opacity:.45;cursor:not-allowed!important;filter:saturate(.5)}nav button:disabled{opacity:.4;cursor:not-allowed}
+.gate-note{padding:12px 15px;background:#172f49;border:1px solid #3d6585;border-radius:9px;color:var(--ice);margin:14px 0}
+.gate-note.complete{border-color:var(--green);color:var(--green)}
+@media(max-width:560px){.section-art{display:block;text-align:center}.section-art svg{margin:auto}.visual-card svg{height:110px}}
 </style>
 </head>
 <body>
@@ -48,7 +59,7 @@ footer{text-align:center;color:#89a9bf;padding:20px;font-size:.85rem}
 <main>
 <section class="panel" id="briefing">
  <div class="kicker">Your assignment begins here</div><h2>🕵️ Welcome, Detective.</h2>
- <p class="muted">A mystery has landed on your desk. People sometimes make assumptions about health based on appearance, weight, or one piece of information. Your job is to examine the evidence and uncover what those clues can—and cannot—tell us.</p>
+ <div class="section-art"><svg viewBox="0 0 180 140" role="img" aria-label="Detective magnifying glass over a medical evidence file"><rect x="18" y="18" width="105" height="105" rx="10" fill="#e6f5ff"/><path d="M38 42h65M38 57h52M38 72h61M38 87h40" stroke="#397ba5" stroke-width="5" stroke-linecap="round"/><circle cx="112" cy="86" r="29" fill="#48c5ff" fill-opacity=".18" stroke="#48c5ff" stroke-width="7"/><path d="M133 108l25 23" stroke="#dff5ff" stroke-width="12" stroke-linecap="round"/><path d="M100 86l8 8 17-19" fill="none" stroke="#8ce0b0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><p><b>YOUR CASE. YOUR EVIDENCE. YOUR CONCLUSION.</b><br>Move through each file in order. Complete the required activity to unlock the next section.</p></div><p class="muted">A mystery has landed on your desk. People sometimes make assumptions about health based on appearance, weight, or one piece of information. Your job is to examine the evidence and uncover what those clues can—and cannot—tell us.</p>
  <div class="grid">
   <article class="card"><div class="emoji">🧬</div><h3>Body Composition</h3><p>Investigate muscle, bone, water, and fat—and why body composition is only one part of health.</p></article>
   <article class="card"><div class="emoji">⚡</div><h3>Glucose & Insulin</h3><p>Follow the body's energy story and learn how insulin helps glucose move into cells.</p></article>
@@ -56,22 +67,22 @@ footer{text-align:center;color:#89a9bf;padding:20px;font-size:.85rem}
  </div>
  <div class="callout"><b>Detective rule:</b> People are not cases to judge. Use respectful language, rely on evidence, and remember that health is complex and personal.</div>
  <h3>Your mission</h3><ol class="muted"><li>Meet the people in the case.</li><li>Open the evidence files and review the facts.</li><li>Answer the investigation questions to unlock your case report.</li><li>Complete the final report and submit your work as directed by your teacher.</li></ol>
- <button class="btn primary" data-next="profiles">Open the case →</button>
+ <div id="briefingGate" class="gate-note">Start here. When you have read the case briefing, mark this section complete.</div><button class="btn primary" id="briefingContinue">I read the case briefing →</button>
 </section>
 
 <section class="panel" id="profiles" hidden>
- <div class="kicker">File 01 • People in the case</div><h2>Meet the People</h2><p class="muted">Read each profile. These are fictional people created for this investigation. Do not diagnose anyone from these details.</p>
+ <div class="kicker">File 01 • People in the case</div><h2>Meet the People</h2><div class="section-art"><svg viewBox="0 0 180 140" role="img" aria-label="Three fictional people profiles"><circle cx="48" cy="45" r="20" fill="#f1c49a"/><path d="M18 118c2-32 15-48 30-48s28 16 30 48" fill="#48c5ff"/><circle cx="90" cy="39" r="20" fill="#dca77e"/><path d="M60 118c2-38 15-58 30-58s28 20 30 58" fill="#8ce0b0"/><circle cx="132" cy="45" r="20" fill="#f0c9a4"/><path d="M102 118c2-32 15-48 30-48s28 16 30 48" fill="#b4c7dc"/></svg><p><b>FICTIONAL CASE PROFILES</b><br>Read all three profiles. Respect privacy: the goal is to understand health, not diagnose people.</p></div><p class="muted">Read each profile. These are fictional people created for this investigation. Do not diagnose anyone from these details.</p>
  <div class="grid">
   <article class="card"><div class="emoji">🏃</div><h3>Alex</h3><p>Enjoys biking and playing basketball. Has a busy schedule and sometimes stays up late. Alex's family has a history of Type 2 diabetes.</p></article>
   <article class="card"><div class="emoji">🎨</div><h3>Jordan</h3><p>Enjoys drawing and gaming. Has Type 1 diabetes and uses a continuous glucose monitor and insulin to manage blood glucose.</p></article>
   <article class="card"><div class="emoji">🎵</div><h3>Sam</h3><p>Enjoys music and walking with friends. Sam has a wide range of interests and routines, and no one in class knows Sam's medical history.</p></article>
  </div>
  <div class="callout"><b>Think like a detective:</b> A person's appearance, activity level, or family history does not tell you their full health story. You need reliable information—and some information is private.</div>
- <button class="btn primary" data-next="evidence">Continue to the evidence →</button>
+ <div id="profileGate" class="gate-note">Review all three profiles, then confirm to continue.</div><button class="btn primary" id="profilesContinue">I reviewed all three profiles →</button>
 </section>
 
 <section class="panel" id="evidence" hidden>
- <div class="kicker">File 02 • Evidence locker</div><h2>🔐 Open the Evidence Files</h2><p class="muted">Select each file to review the information. You will need these facts to solve the case.</p>
+ <div class="kicker">File 02 • Evidence locker</div><h2>🔐 Open the Evidence Files</h2><div class="section-art"><svg viewBox="0 0 180 140" role="img" aria-label="Open evidence folder with medical documents"><path d="M18 42h58l12 13h74v65H18z" fill="#dff5ff" stroke="#48c5ff" stroke-width="4"/><path d="M28 58h130v52H28z" fill="#a9d5ee"/><path d="M48 76h82M48 91h62" stroke="#397ba5" stroke-width="5" stroke-linecap="round"/><circle cx="136" cy="88" r="15" fill="#8ce0b0"/><path d="M129 88l5 5 10-12" fill="none" stroke="#16466a" stroke-width="4" stroke-linecap="round"/></svg><p><b>SEVEN EVIDENCE FILES</b><br>Open every file. Each one will be marked reviewed before you can continue.</p></div><p class="muted">Select each file to review the information. You will need these facts to solve the case.</p>
  <details class="evidence"><summary>Evidence A — What is body composition?</summary><p>Body composition describes the different tissues and materials that make up the body. Four commonly discussed components are <b>muscle mass, bone mass, body water, and fat mass</b>. Each has important roles in normal body function.</p></details>
  <details class="evidence"><summary>Evidence B — Beyond the number</summary><p>Weight and BMI do not describe every part of a person's health. They do not directly measure fitness, nutrition, sleep, mental well-being, blood glucose, or all aspects of body composition. No single number tells the whole story.</p></details>
  <details class="evidence"><summary>Evidence C — What influences health?</summary><p>Health is shaped by many interacting factors, including genetics, nutrition, physical activity, sleep, stress, environment, access to resources, and medical conditions. These factors are not all fully under an individual's control.</p></details>
@@ -80,12 +91,12 @@ footer{text-align:center;color:#89a9bf;padding:20px;font-size:.85rem}
  <details class="evidence"><summary>Evidence F — Body composition and glucose</summary><p>Muscles use glucose for energy. Physical activity and muscle contractions can help muscles take up glucose and can improve insulin sensitivity. Higher amounts of visceral fat are associated with greater insulin resistance, but body fat or body size alone cannot diagnose diabetes or determine someone's health.</p></details>
  <details class="evidence"><summary>Evidence G — Living with diabetes</summary><p>Diabetes management is individual. It may involve checking glucose, insulin or other treatments, food choices, physical activity, and ongoing adjustments. Technology such as continuous glucose monitors and insulin pumps can support management. People with diabetes can live active, full lives.</p></details>
  <div class="callout"><b>Important:</b> This activity is for education—not diagnosis. Never guess whether someone has diabetes based on appearance or make assumptions about how they manage their health.</div>
- <button class="btn primary" data-next="lab">Evidence reviewed — enter the investigation labs →</button>
+ <div id="evidenceGate" class="gate-note" aria-live="polite">0 of 7 evidence files reviewed. Open each file to unlock the next section.</div><button class="btn primary" id="evidenceContinue" disabled>Review all evidence to continue →</button>
 </section>
 
 
 <section class="panel" id="lab" hidden>
- <div class="kicker">File 03 • Interactive investigation</div><h2>🧪 The Investigation Labs</h2>
+ <div class="kicker">File 03 • Interactive investigation</div><h2>🧪 The Investigation Labs</h2><div class="section-art"><svg viewBox="0 0 180 140" role="img" aria-label="Laboratory flask with blue liquid"><path d="M67 16h46M80 16v45L42 116q-5 10 8 10h80q13 0 8-10L100 61V16" fill="#dff5ff" stroke="#48c5ff" stroke-width="5" stroke-linejoin="round"/><path d="M58 100h64l15 19H43z" fill="#48c5ff"/><circle cx="77" cy="91" r="5" fill="#fff"/><circle cx="101" cy="108" r="4" fill="#fff"/><path d="M80 16v-6h20v6" fill="none" stroke="#dff5ff" stroke-width="4"/></svg><p><b>FOUR REQUIRED STATIONS</b><br>Answer every question correctly at each station to secure the evidence and unlock the next challenge.</p></div>
  <p class="muted">The evidence locker gave you the facts. Now test your detective skills at four interactive stations. Complete each station to unlock the final clue challenge.</p>
  <div class="steps" id="labSteps"><span class="step">01 Body Composition Lab</span><span class="step">02 Glucose Relay</span><span class="step">03 Myth Buster</span><span class="step">04 Technology Check</span></div>
  <div id="labStations"></div>
@@ -95,7 +106,7 @@ footer{text-align:center;color:#89a9bf;padding:20px;font-size:.85rem}
 </section>
 
 <section class="panel" id="clues" hidden>
- <div class="kicker">File 03 • Investigation challenge</div><h2>🧩 Solve the Clues</h2><p class="muted">You have completed the four investigation labs. Now answer all six case questions. You can retry any question and use the evidence locker when you need a reminder.</p>
+ <div class="kicker">File 03 • Investigation challenge</div><h2>🧩 Solve the Clues</h2><div class="section-art"><svg viewBox="0 0 180 140" role="img" aria-label="Magnifying glass revealing a puzzle clue"><circle cx="75" cy="57" r="38" fill="#dff5ff" fill-opacity=".2" stroke="#48c5ff" stroke-width="8"/><path d="M103 86l42 42" stroke="#dff5ff" stroke-width="13" stroke-linecap="round"/><path d="M58 57h34M75 40v34" stroke="#8ce0b0" stroke-width="6" stroke-linecap="round"/><path d="M124 23l7 7 13-15" fill="none" stroke="#ffd36a" stroke-width="5" stroke-linecap="round"/></svg><p><b>SIX CASE CLUES</b><br>Choose the correct answer for all six questions. You can retry after reviewing the evidence.</p></div><p class="muted">You have completed the four investigation labs. Now answer all six case questions. You can retry any question and use the evidence locker when you need a reminder.</p>
  <div id="quiz"></div>
  <div class="progress"><span id="quizProgress"></span></div>
  <p id="quizScore" class="muted" aria-live="polite">0 of 6 clues solved.</p>
@@ -103,7 +114,7 @@ footer{text-align:center;color:#89a9bf;padding:20px;font-size:.85rem}
 </section>
 
 <section class="panel" id="report" hidden>
- <div class="kicker">File 04 • Case conclusion</div><h2>📋 Final Case Report</h2>
+ <div class="kicker">File 04 • Case conclusion</div><h2>📋 Final Case Report</h2><div class="section-art"><svg viewBox="0 0 180 140" role="img" aria-label="Case report clipboard with checkmarks"><rect x="42" y="15" width="96" height="112" rx="10" fill="#eaf6ff" stroke="#48c5ff" stroke-width="4"/><rect x="68" y="8" width="44" height="17" rx="6" fill="#8ce0b0"/><path d="M58 49l7 7 12-15M58 80l7 7 12-15M58 108l7 7 12-15" fill="none" stroke="#269b70" stroke-width="5" stroke-linecap="round"/><path d="M88 49h35M88 80h35M88 108h35" stroke="#397ba5" stroke-width="5" stroke-linecap="round"/></svg><p><b>FINAL REPORT</b><br>Complete all five written responses. Your report unlocks the case-closed screen when every answer is filled in.</p></div>
  <p class="muted">Use what you learned to explain what the evidence tells you. Write in your own words. Do not include personal medical information.</p>
  <div class="report">
   <h3>CASE FILE #013 — What's Under the Surface?</h3>
@@ -126,11 +137,23 @@ footer{text-align:center;color:#89a9bf;padding:20px;font-size:.85rem}
 </main>
 <footer>VPrepWV • Health Week 13 • CASE FILE #013<br>Educational activity only. Not medical advice or a diagnostic tool.</footer>
 <script>
-const sections=["briefing","profiles","evidence","lab","clues","report"];let visited=new Set(["briefing"]);let solved=new Set();let labDone=new Set();
-function show(id){sections.forEach(s=>document.getElementById(s).hidden=s!==id);document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.go===id));visited.add(id);updateProgress();window.scrollTo({top:0,behavior:"smooth"})}
-function updateProgress(){let n=visited.size;document.getElementById("progressText").textContent="Investigation progress: "+n+" / 5";document.getElementById("progressBar").style.width=(n/5*100)+"%"}
-document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.go==="report"&&document.getElementById("unlockReport").disabled)return show("clues");if(b.dataset.go==="clues"&&labDone.size!==4)return show("lab");show(b.dataset.go)}));
-document.querySelectorAll("[data-next]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.next)));
+const sections=["briefing","profiles","evidence","lab","clues","report"];
+const order=["briefing","profiles","evidence","lab","clues","report"];
+const completed=new Set();
+let solved=new Set(),labDone=new Set(),profileConfirmed=false;
+const evidenceRead=new Set();
+function indexOf(id){return order.indexOf(id)}
+function canOpen(id){const i=indexOf(id);return i===0||completed.has(order[i-1])}
+function updateNavigation(){document.querySelectorAll("nav button").forEach(b=>{const allowed=canOpen(b.dataset.go);b.disabled=!allowed;b.classList.toggle("locked",!allowed);b.title=allowed?"Open section":"Complete the previous section to unlock";});}
+function show(id){if(!canOpen(id))return;sections.forEach(s=>document.getElementById(s).hidden=s!==id);document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.go===id));updateNavigation();updateProgress();window.scrollTo({top:0,behavior:"smooth"})}
+function complete(id){completed.add(id);updateNavigation();updateProgress();}
+function updateProgress(){const n=completed.size;document.getElementById("progressText").textContent="Sections completed: "+n+" / 6";document.getElementById("progressBar").style.width=(n/6*100)+"%";}
+document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.go)));
+document.getElementById("briefingContinue").addEventListener("click",()=>{complete("briefing");show("profiles")});
+document.getElementById("profilesContinue").addEventListener("click",()=>{profileConfirmed=true;document.getElementById("profileGate").textContent="✓ All three profiles reviewed. Evidence Locker unlocked.";document.getElementById("profileGate").classList.add("complete");complete("profiles");show("evidence")});
+document.querySelectorAll("#evidence details").forEach((d,i)=>d.addEventListener("toggle",()=>{if(d.open){evidenceRead.add(i);document.getElementById("evidenceGate").textContent=evidenceRead.size+" of 7 evidence files reviewed.";if(evidenceRead.size===7){document.getElementById("evidenceGate").textContent="✓ All seven evidence files reviewed. Investigation Labs unlocked.";document.getElementById("evidenceGate").classList.add("complete");document.getElementById("evidenceContinue").disabled=false;}}}));
+document.getElementById("evidenceContinue").addEventListener("click",()=>{if(evidenceRead.size===7){complete("evidence");show("lab")}});
+updateNavigation();updateProgress();
 
 const labData=[
  {id:"body",title:"01 • Body Composition Lab",intro:"Match each body component to an accurate description.",qs:[
@@ -173,7 +196,7 @@ labRoot.addEventListener("click",e=>{
    document.querySelectorAll("#labSteps .step")[si].classList.add("done");
    document.getElementById("labProgress").style.width=(labDone.size/4*100)+"%";
    document.getElementById("labStatus").textContent=labDone.size+" of 4 investigation stations completed.";
-   if(labDone.size===4){document.getElementById("toClues").disabled=false;document.getElementById("labStatus").textContent="All four stations complete! Your detective skills are ready for the final challenge."}
+   if(labDone.size===4){complete("lab");document.getElementById("toClues").disabled=false;document.getElementById("labStatus").textContent="All four stations complete! Your detective skills are ready for the final challenge."}
   }
  }else{
   b.classList.add("incorrect");b.disabled=true;
@@ -192,10 +215,10 @@ const questions=[
 ];
 const quiz=document.getElementById("quiz");
 questions.forEach((q,i)=>{let d=document.createElement("div");d.className="question";d.innerHTML='<p>'+(i+1)+'. '+q.q+'</p><div class="choices">'+q.a.map((a,j)=>'<button class="choice" data-q="'+i+'" data-a="'+j+'">'+String.fromCharCode(65+j)+'. '+a+'</button>').join("")+'</div><div class="feedback" id="fb'+i+'" aria-live="polite"></div>';quiz.appendChild(d)});
-quiz.addEventListener("click",e=>{let b=e.target.closest(".choice");if(!b)return;let i=+b.dataset.q;if(solved.has(i))return;let q=questions[i],f=document.getElementById("fb"+i);if(+b.dataset.a===q.c){b.classList.add("correct");b.disabled=true;solved.add(i);f.className="feedback good";f.textContent="✓ Correct! "+q.why}else{b.classList.add("incorrect");b.disabled=true;f.className="feedback try";f.textContent="Not quite. Review the evidence and try another answer."}let count=solved.size;document.getElementById("quizProgress").style.width=(count/questions.length*100)+"%";document.getElementById("quizScore").textContent=count+" of 6 clues solved.";if(count===questions.length){document.getElementById("unlockReport").disabled=false;document.getElementById("quizScore").textContent="All six clues solved! Your final report is unlocked."}});
+quiz.addEventListener("click",e=>{let b=e.target.closest(".choice");if(!b)return;let i=+b.dataset.q;if(solved.has(i))return;let q=questions[i],f=document.getElementById("fb"+i);if(+b.dataset.a===q.c){b.classList.add("correct");b.disabled=true;solved.add(i);f.className="feedback good";f.textContent="✓ Correct! "+q.why}else{b.classList.add("incorrect");b.disabled=true;f.className="feedback try";f.textContent="Not quite. Review the evidence and try another answer."}let count=solved.size;document.getElementById("quizProgress").style.width=(count/questions.length*100)+"%";document.getElementById("quizScore").textContent=count+" of 6 clues solved.";if(count===questions.length){complete("clues");document.getElementById("unlockReport").disabled=false;document.getElementById("quizScore").textContent="All six clues solved! Your final report is unlocked."}});
 document.getElementById("unlockReport").addEventListener("click",()=>show("report"));
-document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.go==="lab"&&visited.has("evidence"))return show("lab");if(b.dataset.go==="clues"&&labDone.size!==4)return show("lab");if(b.dataset.go==="report"&&solved.size!==questions.length)return show("clues");show(b.dataset.go)}));
-document.getElementById("prepare").addEventListener("click",()=>{const ids=["answer1","answer2","answer3","answer4","answer5"];let missing=ids.filter(id=>!document.getElementById(id).value.trim());if(missing.length){alert("Please complete all five case report responses before preparing your report.");document.getElementById(missing[0]).focus();return}const labels=["Body composition and health","The role of insulin","Type 1 and Type 2 diabetes","A myth corrected","Respect and empathy"];document.getElementById("summary").innerHTML=ids.map((id,i)=>'<p><b>'+labels[i]+':</b><br>'+escapeHTML(document.getElementById(id).value).replace(/\n/g,"<br>")+'</p>').join("");document.getElementById("completion").hidden=false;document.getElementById("completion").scrollIntoView({behavior:"smooth",block:"start"})});
+
+document.getElementById("prepare").addEventListener("click",()=>{const ids=["answer1","answer2","answer3","answer4","answer5"];let missing=ids.filter(id=>!document.getElementById(id).value.trim());if(missing.length){alert("Please complete all five case report responses before preparing your report.");document.getElementById(missing[0]).focus();return}const labels=["Body composition and health","The role of insulin","Type 1 and Type 2 diabetes","A myth corrected","Respect and empathy"];document.getElementById("summary").innerHTML=ids.map((id,i)=>'<p><b>'+labels[i]+':</b><br>'+escapeHTML(document.getElementById(id).value).replace(/\n/g,"<br>")+'</p>').join("");document.getElementById("completion").hidden=false;complete("report");document.getElementById("completion").scrollIntoView({behavior:"smooth",block:"start"})});
 function escapeHTML(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 document.getElementById("print").addEventListener("click",()=>window.print());
 </script>
