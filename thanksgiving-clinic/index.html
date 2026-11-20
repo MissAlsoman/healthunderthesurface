@@ -78,9 +78,10 @@ h2{margin:0 0 8px;color:var(--gold);font-size:1.7rem}h3{margin:0 0 8px;color:#ff
 </section>
 <section id="final">
 <div class="eyebrow">05 · Final report</div><h2>Dr. Turkey's Patient Care Report</h2>
-<p class="muted no-print">Review your work below. When everything is complete, use the Print / Save PDF button and submit your report in Canvas.</p>
+<p class="muted no-print">Review your work below. Type your name in the final step, save this report as a PDF, and upload it to Week 14: Dr. Turkey's Clinic Assignment in Canvas.</p>
 <div id="completion" class="notice no-print">Complete your answers, then prepare your report.</div>
-<div class="report" id="reportContent"><h3>🦃 Thanksgiving Clinic — Final Health Report</h3><p><b>Student:</b> <span id="rName">Not entered</span> &nbsp; <b>Class:</b> <span id="rPeriod">—</span></p><p><b>Case file:</b> THANKS-01 · Holiday Health Challenge</p><hr><h3>Patient Case Results</h3><div id="rCases"></div><h3>Doctor's Notes</h3><div id="rNotes"></div><h3>Healthy Thanksgiving Prescription</h3><div id="rRecs"></div><h3>Final Reflection</h3><div class="answer" id="rReflection"></div><p><b>Doctor's sign-off:</b> I have completed my Thanksgiving Health Challenge.</p></div>
+<div class="card no-print" style="margin:14px 0"><h3>Final step before submitting!</h3><p>Type your name below so it appears on your final report.</p><label for="finalStudentName">Your first and last name</label><input class="field" id="finalStudentName" placeholder="Enter your first and last name" required><p><b>When you're finished:</b> Click <b>Print / Save as PDF</b>, save your completed report as a PDF, then upload it to <b>Week 14: Dr. Turkey's Clinic Assignment</b> in Canvas.</p></div>
+<div class="report" id="reportContent"><h3>🦃 Thanksgiving Clinic — Final Health Report</h3><p><b>Student:</b> <span id="rName">Not entered</span> &nbsp; <b>Class:</b> <span id="rPeriod">—</span></p><p><b>Case file:</b> THANKS-01 · Holiday Health Challenge</p><hr><h3>Patient Case Results</h3><div id="rCases"></div><h3>Doctor's Notes</h3><div id="rNotes"></div><h3>Healthy Thanksgiving Prescription</h3><div id="rRecs"></div><h3>Final Reflection</h3><div class="answer" id="rReflection"></div><p><b>Doctor's sign-off:</b> I have completed my Thanksgiving Health Challenge.</p><p><b>Student name:</b> <span id="rFinalName">Not entered</span></p></div>
 <div class="no-print" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px"><button class="primary" onclick="window.print()">🖨️ Print / Save as PDF</button><button onclick="go('patients')">Review patient cases</button></div>
 </section>
 </div>
@@ -99,7 +100,7 @@ function go(id){document.getElementById(id).scrollIntoView({behavior:"smooth",bl
 function val(id){return document.getElementById(id).value.trim()}
 function safe(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function buildReport(){
-const name=val("studentName"),period=val("classPeriod");document.getElementById("rName").textContent=name||"Not entered";document.getElementById("rPeriod").textContent=period||"—";
+const name=val("finalStudentName")||val("studentName"),period=val("classPeriod");document.getElementById("rName").textContent=name||"Not entered";document.getElementById("rFinalName").textContent=name||"Not entered";document.getElementById("rPeriod").textContent=period||"—";
 const titles=["Uncle Sleepy","Grandma Pumpkin Pie","Little Timmy","Cousin Sniffles"];
 const answers=["Get enough rest and add some physical activity.","Type 1 diabetes is an autoimmune condition; it is not caused by eating sugar.","Include water throughout the day.","Practice good hygiene, cover coughs, and avoid exposing others while sick."];
 document.getElementById("rCases").innerHTML=titles.map((t,i)=>'<div class="answer"><b>'+t+':</b> '+(selected[i]===null?"Not answered":(selected[i]===correct[i]?"Correct":"Incorrect")+". Selected: "+safe(document.querySelector('[data-case="'+i+'"] .choice:nth-child('+(selected[i]+1)+')').textContent))+'</div>').join("");
@@ -107,7 +108,7 @@ const qs=["Physical activity benefits the body","Why sugar does not cause Type 1
 document.getElementById("rNotes").innerHTML=qs.map((q,i)=>'<div class="answer"><b>'+q+':</b><br>'+(val("q"+(i+1))?safe(val("q"+(i+1))):"No response entered")+'</div>').join("");
 document.getElementById("rRecs").innerHTML=[1,2,3].map(i=>'<div class="answer"><b>Recommendation '+i+':</b><br>'+(val("rec"+i)?safe(val("rec"+i)):"No response entered")+'</div>').join("");
 document.getElementById("rReflection").textContent=val("reflection")||"No response entered";
-const required=["studentName","q1","q2","q3","q4","rec1","rec2","rec3","reflection"];const missing=required.filter(id=>!val(id)).length+selected.filter(x=>x===null).length;
+const required=["finalStudentName","q1","q2","q3","q4","rec1","rec2","rec3","reflection"];const missing=required.filter(id=>!val(id)).length+selected.filter(x=>x===null).length;
 document.getElementById("completion").textContent=missing===0?"✓ Your report is ready! Review it and print or save it as a PDF for Canvas.":"Your report is prepared, but "+missing+" item(s) are still blank or unanswered. You can still print your report, or go back and finish.";
 go("final")
 }
