@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dr. Turkey's Thanksgiving Clinic | Holiday Health Challenge</title>
+<style>
+:root{--bg:#20170f;--panel:#302318;--panel2:#3d2b1d;--line:#79583b;--orange:#ffad55;--gold:#ffd77b;--cream:#fff4df;--muted:#d8c2a4;--green:#9ee0a5;--red:#ff9d8d}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -10%,#704324 0,#302014 43%,var(--bg) 82%);color:var(--cream);font:16px/1.6 system-ui,Segoe UI,sans-serif}
+header{text-align:center;padding:42px 18px 32px;background:linear-gradient(120deg,#3c2417ee,#704324dd);border-bottom:1px solid var(--line)}
+.stamp{display:inline-block;border:2px solid var(--gold);color:var(--gold);padding:5px 13px;border-radius:6px;letter-spacing:.16em;font-size:.76rem;font-weight:900;transform:rotate(-2deg)}
+.heroicon{font-size:4.5rem;line-height:1;margin:18px 0 8px;filter:drop-shadow(0 5px 8px #140b06)}
+h1{font-size:clamp(2.2rem,7vw,4.6rem);line-height:1.02;margin:8px auto 12px;max-width:950px;letter-spacing:-.04em}h1 span{color:var(--gold)}
+header p{max-width:700px;margin:0 auto;color:#f1dfc5;font-size:1.08rem}
+.wrap{max-width:1000px;margin:auto;padding:20px}.barwrap{height:10px;background:#1b120c;border-radius:99px;overflow:hidden;margin:10px 0 18px;border:1px solid var(--line)}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--gold));transition:width .3s}
+.topline{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:.88rem}
+nav{position:sticky;top:0;z-index:5;background:#21170feF;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;justify-content:center;gap:7px;flex-wrap:wrap;padding:10px}
+button,.btn{border:1px solid #916943;background:#49301e;color:var(--cream);border-radius:9px;padding:10px 15px;font:700 .92rem system-ui;cursor:pointer;transition:.15s}
+button:hover,.btn:hover{transform:translateY(-1px);border-color:var(--gold)}button.primary,.btn.primary{background:linear-gradient(120deg,#d87932,#f1a64b);color:#28170c;border:0}button:disabled{opacity:.5;cursor:not-allowed;transform:none}
+section{scroll-margin-top:75px;margin:22px 0;padding:24px;background:linear-gradient(145deg,#39291d,#2a1d14);border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 30px #120b0670}
+h2{margin:0 0 8px;color:var(--gold);font-size:1.7rem}h3{margin:0 0 8px;color:#ffd9a4}.eyebrow{color:var(--orange);font-size:.75rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px}.card{background:#24180f;border:1px solid #69492e;border-radius:13px;padding:16px}.patient{font-size:2.5rem}.muted{color:var(--muted)}.small{font-size:.88rem}.field{display:block;width:100%;background:#21170f;border:1px solid #79583b;color:var(--cream);border-radius:8px;padding:11px;font:inherit;margin:6px 0 12px}.field:focus{outline:2px solid var(--orange);outline-offset:1px}label{font-weight:750}.case{margin:15px 0;padding:17px;background:#24180f;border:1px solid #79583b;border-radius:13px}.casehead{display:flex;gap:13px;align-items:center}.casehead .patient{font-size:2.4rem}.choices{display:grid;gap:8px;margin-top:12px}.choice{text-align:left;background:#392719;border:1px solid #79583b;padding:12px}.choice.selected{outline:2px solid var(--gold);background:#594027}.choice.correct{border-color:var(--green);background:#213c2b}.choice.wrong{border-color:var(--red);background:#49251f}.feedback{min-height:24px;font-weight:700;margin-top:8px}.good{color:var(--green)}.bad{color:var(--red)}textarea{min-height:86px;resize:vertical}.question{margin:14px 0}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:620px){.two{grid-template-columns:1fr}section{padding:17px}.wrap{padding:12px}}
+.report{background:#fffaf0;color:#2d2117;border-radius:12px;padding:20px;margin-top:14px}.report h3{color:#75421f}.report .answer{border-bottom:1px solid #d8c6ad;padding:8px 0;white-space:pre-wrap}.hidden{display:none}.pill{display:inline-block;background:#634326;color:#ffe2ac;padding:4px 9px;border-radius:99px;font-size:.78rem;font-weight:800}.footer{text-align:center;color:var(--muted);padding:25px}.notice{border-left:4px solid var(--orange);padding:10px 14px;background:#24180f;border-radius:7px}
+@media print{body{background:white;color:#20170f}header,nav,.no-print,.barwrap,.topline{display:none!important}.wrap{max-width:none;padding:0}section{display:none!important}#final{display:block!important;background:white;border:0;box-shadow:none;margin:0;padding:0}#final .report{display:block!important;border:1px solid #bbb}#final h2{color:#5b351b}#final h3{color:#5b351b}.footer{display:none}}
+</style>
+</head>
+<body>
+<header>
+<div class="stamp">HOLIDAY HEALTH CASE FILE</div>
+<div class="heroicon">🦃🩺</div>
+<h1>Dr. Turkey's <span>Thanksgiving Clinic</span></h1>
+<p>The Holiday Health Challenge · The clinic is busy, the patients are arriving, and Dr. Turkey needs YOUR help!</p>
+</header>
+<nav class="no-print"><button onclick="go('briefing')">Mission</button><button onclick="go('patients')">Patient Cases</button><button onclick="go('doctor')">Doctor's Notes</button><button onclick="go('prescription')">Prescription</button><button onclick="go('final')">Final Report</button></nav>
+<div class="wrap">
+<div class="topline"><span>🗂️ CASE #THANKS-01 · Health Investigation</span><span id="progressText">Progress: 0 of 4 cases answered</span></div>
+<div class="barwrap"><div class="bar" id="progressBar"></div></div>
+<section id="briefing">
+<div class="eyebrow">01 · Mission briefing</div><h2>Welcome to the clinic, Health Detective!</h2>
+<p>Thanksgiving is almost here, and Dr. Turkey's waiting room is full. Your job is to review each patient's situation, choose the healthiest advice, and write a few recommendations to help the family have a healthy holiday.</p>
+<div class="grid">
+<div class="card"><div class="patient">🔎</div><h3>Investigate</h3><p class="muted small">Read each patient case carefully.</p></div>
+<div class="card"><div class="patient">🧠</div><h3>Use your health knowledge</h3><p class="muted small">Think about diabetes, wellness, activity, and illness prevention.</p></div>
+<div class="card"><div class="patient">📋</div><h3>Write your report</h3><p class="muted small">Complete your notes and submit your final report in Canvas.</p></div>
+</div>
+<div class="notice"><b>Before you begin:</b> Enter your name. Your answers stay in this browser while you work. When you finish, prepare your report, then print or save it as a PDF and submit it through Canvas.</div>
+<label for="studentName">Student name</label><input class="field" id="studentName" placeholder="Type your first and last name">
+<label for="classPeriod">Class / Period (if needed)</label><input class="field" id="classPeriod" placeholder="Optional">
+<button class="primary" onclick="go('patients')">Let's see the patients →</button>
+</section>
+<section id="patients">
+<div class="eyebrow">02 · Patient cases</div><h2>Four patients need your help!</h2><p class="muted">Choose the BEST advice for each patient. You'll receive feedback after each answer.</p>
+<div class="case" data-case="0"><div class="casehead"><div class="patient">😴</div><div><span class="pill">Patient 01</span><h3>Uncle Sleepy</h3></div></div><p>Uncle Sleepy has been staying up late, feels tired, and has skipped his usual walks. He wants to feel more energized before the holiday.</p><b>What advice would you give him?</b><div class="choices">
+<button class="choice" onclick="answer(0,0,this)">A. Skip sleep to get more done.</button><button class="choice" onclick="answer(0,1,this)">B. Get enough rest and add some physical activity.</button><button class="choice" onclick="answer(0,2,this)">C. Avoid drinking water so he doesn't have to take breaks.</button></div><div class="feedback" id="fb0" aria-live="polite"></div></div>
+<div class="case" data-case="1"><div class="casehead"><div class="patient">🥧</div><div><span class="pill">Patient 02</span><h3>Grandma Pumpkin Pie</h3></div></div><p>Grandma says, "Eating dessert causes Type 1 diabetes. That's why everyone should avoid pie!"</p><b>What should Dr. Turkey explain?</b><div class="choices">
+<button class="choice" onclick="answer(1,0,this)">A. All sugar causes diabetes.</button><button class="choice" onclick="answer(1,1,this)">B. Type 1 diabetes is caused by eating sweets.</button><button class="choice" onclick="answer(1,2,this)">C. Type 1 diabetes is an autoimmune condition; it is not caused by eating sugar.</button></div><div class="feedback" id="fb1" aria-live="polite"></div></div>
+<div class="case" data-case="2"><div class="casehead"><div class="patient">🥤</div><div><span class="pill">Patient 03</span><h3>Little Timmy</h3></div></div><p>Timmy wants to drink soda all day and hasn't had much water. He asks what he could choose to help stay hydrated.</p><b>What would be a healthier recommendation?</b><div class="choices">
+<button class="choice" onclick="answer(2,0,this)">A. Include water throughout the day.</button><button class="choice" onclick="answer(2,1,this)">B. Never drink water.</button><button class="choice" onclick="answer(2,2,this)">C. Replace every meal with soda.</button></div><div class="feedback" id="fb2" aria-live="polite"></div></div>
+<div class="case" data-case="3"><div class="casehead"><div class="patient">🤧</div><div><span class="pill">Patient 04</span><h3>Cousin Sniffles</h3></div></div><p>Cousin Sniffles has a cough and doesn't want to miss Thanksgiving dinner. The family wants to protect guests from getting sick.</p><b>What should the family consider?</b><div class="choices">
+<button class="choice" onclick="answer(3,0,this)">A. Share drinks and utensils with everyone.</button><button class="choice" onclick="answer(3,1,this)">B. Practice good hygiene, cover coughs, and avoid exposing others while sick.</button><button class="choice" onclick="answer(3,2,this)">C. Cough into their hands and then help serve food.</button></div><div class="feedback" id="fb3" aria-live="polite"></div></div>
+<div class="topline"><span id="caseScore">Correct answers: 0 of 4</span><button onclick="go('doctor')">Continue to Doctor's Notes →</button></div>
+</section>
+<section id="doctor">
+<div class="eyebrow">03 · Doctor's notes</div><h2>Show what you know</h2><p class="muted">Answer in complete thoughts. Use what you've learned in class.</p>
+<div class="question"><label for="q1">1. Explain one way physical activity benefits the body.</label><textarea class="field" id="q1" placeholder="Physical activity helps the body by..."></textarea></div>
+<div class="question"><label for="q2">2. Why doesn't eating sugar automatically cause Type 1 diabetes?</label><textarea class="field" id="q2" placeholder="Type 1 diabetes..."></textarea></div>
+<div class="question"><label for="q3">3. How does insulin help the body use glucose?</label><textarea class="field" id="q3" placeholder="Insulin helps..."></textarea></div>
+<div class="question"><label for="q4">4. Name two ways to help prevent the spread of illness during Thanksgiving.</label><textarea class="field" id="q4" placeholder="One way is... Another way is..."></textarea></div>
+<button class="primary" onclick="go('prescription')">Write the prescription →</button>
+</section>
+<section id="prescription">
+<div class="eyebrow">04 · Your prescription</div><h2>Prescribe a healthy Thanksgiving!</h2>
+<p>Dr. Turkey needs three practical recommendations for the family. Include ideas from at least two different areas of health (for example: nutrition, sleep, physical activity, hydration, diabetes awareness, or illness prevention).</p>
+<div class="question"><label for="rec1">Recommendation 1</label><textarea class="field" id="rec1" placeholder="One healthy recommendation is..."></textarea></div>
+<div class="question"><label for="rec2">Recommendation 2</label><textarea class="field" id="rec2" placeholder="Another recommendation is..."></textarea></div>
+<div class="question"><label for="rec3">Recommendation 3</label><textarea class="field" id="rec3" placeholder="A third recommendation is..."></textarea></div>
+<div class="question"><label for="reflection">Final reflection: One thing I can do to take care of my health during the holidays is __________ because __________.</label><textarea class="field" id="reflection" placeholder="One thing I can do..."></textarea></div>
+<button class="primary" onclick="buildReport()">Prepare my final report →</button>
+</section>
+<section id="final">
+<div class="eyebrow">05 · Final report</div><h2>Dr. Turkey's Patient Care Report</h2>
+<p class="muted no-print">Review your work below. When everything is complete, use the Print / Save PDF button and submit your report in Canvas.</p>
+<div id="completion" class="notice no-print">Complete your answers, then prepare your report.</div>
+<div class="report" id="reportContent"><h3>🦃 Thanksgiving Clinic — Final Health Report</h3><p><b>Student:</b> <span id="rName">Not entered</span> &nbsp; <b>Class:</b> <span id="rPeriod">—</span></p><p><b>Case file:</b> THANKS-01 · Holiday Health Challenge</p><hr><h3>Patient Case Results</h3><div id="rCases"></div><h3>Doctor's Notes</h3><div id="rNotes"></div><h3>Healthy Thanksgiving Prescription</h3><div id="rRecs"></div><h3>Final Reflection</h3><div class="answer" id="rReflection"></div><p><b>Doctor's sign-off:</b> I have completed my Thanksgiving Health Challenge.</p></div>
+<div class="no-print" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px"><button class="primary" onclick="window.print()">🖨️ Print / Save as PDF</button><button onclick="go('patients')">Review patient cases</button></div>
+</section>
+</div>
+<div class="footer">🦃 Dr. Turkey's Thanksgiving Clinic · Health Detective Training · Take care of yourself and each other!</div>
+<script>
+const correct=[1,2,0,1], explanations=[
+"Correct! Sleep supports overall health, and regular physical activity can improve energy, fitness, and well-being.",
+"Correct! Type 1 diabetes is an autoimmune condition. Eating sugar does not cause it.",
+"Correct! Water is an important part of staying hydrated throughout the day.",
+"Correct! Hand hygiene, covering coughs, and limiting exposure while sick can help reduce the spread of illness."
+];
+const selected=[null,null,null,null];
+function answer(i,n,btn){if(selected[i]!==null)return;selected[i]=n;const box=btn.parentElement;[...box.children].forEach(b=>{b.disabled=true;if(Number(b.getAttribute("onclick").match(/answer\(\d+,(\d+)/)[1])===correct[i])b.classList.add("correct")});if(n!==correct[i])btn.classList.add("wrong");const ok=n===correct[i];document.getElementById("fb"+i).innerHTML=(ok?"✓ ":"✕ ")+(ok?explanations[i]:"Not quite. The best answer is highlighted. "+explanations[i]);document.getElementById("fb"+i).className="feedback "+(ok?"good":"bad");updateProgress()}
+function updateProgress(){const done=selected.filter(x=>x!==null).length;document.getElementById("progressText").textContent="Progress: "+done+" of 4 cases answered";document.getElementById("progressBar").style.width=(done/4*100)+"%";document.getElementById("caseScore").textContent="Correct answers: "+selected.filter((x,i)=>x===correct[i]).length+" of 4"}
+function go(id){document.getElementById(id).scrollIntoView({behavior:"smooth",block:"start"})}
+function val(id){return document.getElementById(id).value.trim()}
+function safe(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function buildReport(){
+const name=val("studentName"),period=val("classPeriod");document.getElementById("rName").textContent=name||"Not entered";document.getElementById("rPeriod").textContent=period||"—";
+const titles=["Uncle Sleepy","Grandma Pumpkin Pie","Little Timmy","Cousin Sniffles"];
+const answers=["Get enough rest and add some physical activity.","Type 1 diabetes is an autoimmune condition; it is not caused by eating sugar.","Include water throughout the day.","Practice good hygiene, cover coughs, and avoid exposing others while sick."];
+document.getElementById("rCases").innerHTML=titles.map((t,i)=>'<div class="answer"><b>'+t+':</b> '+(selected[i]===null?"Not answered":(selected[i]===correct[i]?"Correct":"Incorrect")+". Selected: "+safe(document.querySelector('[data-case="'+i+'"] .choice:nth-child('+(selected[i]+1)+')').textContent))+'</div>').join("");
+const qs=["Physical activity benefits the body","Why sugar does not cause Type 1 diabetes","How insulin helps use glucose","Ways to prevent illness"];
+document.getElementById("rNotes").innerHTML=qs.map((q,i)=>'<div class="answer"><b>'+q+':</b><br>'+(val("q"+(i+1))?safe(val("q"+(i+1))):"No response entered")+'</div>').join("");
+document.getElementById("rRecs").innerHTML=[1,2,3].map(i=>'<div class="answer"><b>Recommendation '+i+':</b><br>'+(val("rec"+i)?safe(val("rec"+i)):"No response entered")+'</div>').join("");
+document.getElementById("rReflection").textContent=val("reflection")||"No response entered";
+const required=["studentName","q1","q2","q3","q4","rec1","rec2","rec3","reflection"];const missing=required.filter(id=>!val(id)).length+selected.filter(x=>x===null).length;
+document.getElementById("completion").textContent=missing===0?"✓ Your report is ready! Review it and print or save it as a PDF for Canvas.":"Your report is prepared, but "+missing+" item(s) are still blank or unanswered. You can still print your report, or go back and finish.";
+go("final")
+}
+</script>
+</body></html>
